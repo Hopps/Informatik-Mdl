@@ -18,7 +18,14 @@ public class BinBaum<Datentyp> {
     {
         zInhalt = pInhalt;
     }
-
+    
+    public BinBaum(Datentyp pInhalt, BinBaum<Datentyp> pLinks, BinBaum<Datentyp> pRechts)
+    {
+        zInhalt = pInhalt;
+        linkerTB = pLinks;
+        rechterTB = pRechts;
+    }
+    
     public void setzeLinks(BinBaum pLinks)
     {
         linkerTB = pLinks;
