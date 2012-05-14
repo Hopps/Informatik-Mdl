@@ -12,7 +12,7 @@ public class Liste<Datentyp> {
     private Knoten<Datentyp> hatBug;          // Die beiden werden Sentinels genannt, enthalten
     private Knoten<Datentyp> hatHeck;         // keine Daten und erleichtern Anfügen und Löschen.
     private Knoten<Datentyp> kenntAktuell;    // Markierung für aktuellen Knoten
-    private int zAnzahl;            // Anzahl der Knoten (ohne Sentinels)
+    private int zAnzahl = 0;            // Anzahl der Knoten (ohne Sentinels)
     
     
     public Liste()
@@ -102,6 +102,7 @@ public class Liste<Datentyp> {
         lKnoten.setVorgaenger(hatHeck.getVorgaenger());
         lKnoten.setNachfolger(hatHeck);
         hatHeck.setVorgaenger(lKnoten);
+        this.zumAnfang();
         zAnzahl++;
     }
     
@@ -109,8 +110,11 @@ public class Liste<Datentyp> {
     {
         if ( kenntAktuell != hatBug && kenntAktuell != hatHeck )
         {
-            kenntAktuell.getVorgaenger().setNachfolger(kenntAktuell.getNachfolger());
-            kenntAktuell.getNachfolger().setVorgaenger(kenntAktuell.getVorgaenger());
+            Knoten lVorgaenger = kenntAktuell.getVorgaenger();
+            Knoten lNachfolger = kenntAktuell.getNachfolger();
+            lVorgaenger.setNachfolger(lNachfolger);
+            lNachfolger.setVorgaenger(lVorgaenger);
+            this.zumAnfang();
             zAnzahl--;
         }
     }
