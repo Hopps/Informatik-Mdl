@@ -3,7 +3,7 @@ package datenstrukturen;
 public class TestCase {
 
     BinBaum baum;
-
+    BinSuchBaum sBaum;
     public TestCase() {
 
     }
@@ -14,7 +14,7 @@ public class TestCase {
     }
 
     private void erstelleBaum() {
-        baum = new BinBaum(5);
+        /*baum = new BinBaum(5);
         baum.setzeLinks(new BinBaum(4));
         baum.setzeRechts(new BinBaum(7));
         baum.linkerTeilbaum().setzeLinks(new BinBaum(8));
@@ -26,7 +26,21 @@ public class TestCase {
         System.out.println("Inorder");
         inorder(baum);
         System.out.println("Postorder");
-        postorder(baum);
+        postorder(baum);*/
+        sBaum = new BinSuchBaum(5);
+        sBaum.fuegeEin(4);
+        sBaum.fuegeEin(8);
+        sBaum.fuegeEin(10);
+        sBaum.fuegeEin(16);
+        sBaum.fuegeEin(2);
+
+        System.out.println("Preorder");
+        preorder(sBaum);
+        System.out.println("Inorder");
+        inorder(sBaum);
+        System.out.println("Postorder");
+        postorder(sBaum);
+
     }
 
     private void preorder(BinBaum pKnoten) {
