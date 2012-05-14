@@ -68,7 +68,7 @@ public class SortierVergleich {
             System.out.println("Kaputt!");
         }
         hatUhr.reset();
-        
+        //hfhd
     }
 
     public boolean istSortiert(int[] pZahlen) {
