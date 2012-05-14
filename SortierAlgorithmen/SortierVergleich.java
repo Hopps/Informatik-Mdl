@@ -17,7 +17,7 @@ public class SortierVergleich {
         SortierVergleich s = new SortierVergleich();
         s.testeSortierverfahren();
     }
-    private int zN = 9;
+    private int zN = 9000;
     private int[] zufallsZahlen;
     private Random hatRandom;
     private Stoppuhr hatUhr;
@@ -68,7 +68,7 @@ public class SortierVergleich {
             System.out.println("Kaputt!");
         }
         hatUhr.reset();
-        //hfhd
+        
     }
 
     public boolean istSortiert(int[] pZahlen) {
@@ -99,7 +99,7 @@ public class SortierVergleich {
 
         public SortierListe() {
             super();
-        }
+}
 
         public void quicksort() {
             SortierListe lLinkeListe = new SortierListe();
