@@ -4,6 +4,7 @@
  */
 package SortierAlgorithmen;
 
+import datenstrukturen.SortierListe;
 import datenstrukturen.Liste;
 import java.util.Random;
 
@@ -17,7 +18,7 @@ public class SortierVergleich {
         SortierVergleich s = new SortierVergleich();
         s.testeSortierverfahren();
     }
-    private int zN = 9000;
+    private int zN = 6;
     private int[] zufallsZahlen;
     private Random hatRandom;
     private Stoppuhr hatUhr;
@@ -32,22 +33,36 @@ public class SortierVergleich {
     }
 
     public void testeSortierverfahren() {
+        
+        SortierListe s = new SortierListe();
+        s.haengeAn("Test");
+        s.haengeAn("Test2");
+        s.zumAnfang();
+        System.out.println((String)s.aktuellesElement());
+        s.entferneAktuell();
+        System.out.println((String)s.aktuellesElement());
+        s.entferneAktuell();
+        System.out.println((String)s.aktuellesElement());        
+        
         System.out.println("BubbleSort: ");
         hatUhr.start();
         int[] lZahlenBubbleSort = this.bubbleSort(zufallsZahlen);
         hatUhr.stop();
+        for ( int i = 0; i < lZahlenBubbleSort.length; i++ )
+        {
+            System.out.println(lZahlenBubbleSort[i]);
+        }
         if (this.istSortiert(lZahlenBubbleSort)) {
             System.out.println("Funktioniert! Zeit: " + hatUhr.zeit() + "ms");
         } else {
             System.out.println("Kaputt!");
         }
         hatUhr.reset();
-        
-        
+
+
         hatUhr = new Stoppuhr();
         SortierListe lListe = new SortierListe();
-        for ( int i = 0; i <= zufallsZahlen.length-1; i++)
-        {
+        for (int i = 0; i < zufallsZahlen.length; i++) {
             lListe.haengeAn(zufallsZahlen[i]);
         }
         System.out.println("Quicksort: ");
@@ -58,9 +73,13 @@ public class SortierVergleich {
         for( int i = 0; i < lListe.laenge(); i++ )
         {
             lListe.zumAnfang();
-            lZahlenQuicksort[i] = (Integer)lListe.aktuellesElement();
-            System.out.println((Integer)lListe.aktuellesElement());
+            lZahlenQuicksort[i] = (Integer) lListe.aktuellesElement();
+            System.out.println((Integer) lListe.aktuellesElement());
             lListe.entferneAktuell();
+        }
+        for ( int i = 0; i < lZahlenQuicksort.length; i++ )
+        {
+            // System.out.println(lZahlenQuicksort[i]);
         }
         if (this.istSortiert(lZahlenQuicksort)) {
             System.out.println("Funktioniert! Zeit: " + hatUhr.zeit() + "ms");
@@ -68,13 +87,12 @@ public class SortierVergleich {
             System.out.println("Kaputt!");
         }
         hatUhr.reset();
-        
     }
 
     public boolean istSortiert(int[] pZahlen) {
         boolean lSortiert = true;
-        for (int i = 0; i < pZahlen.length - 1; i++) {
-            if (pZahlen[i] > pZahlen[i + 1]) {
+        for (int i = 0; i < pZahlen.length-1; i++) {
+            if ( pZahlen[i] > pZahlen[i + 1] ) {
                 lSortiert = false;
             }
         }
@@ -92,52 +110,5 @@ public class SortierVergleich {
             }
         }
         return pZahlen;
-    }
-
-
-    class SortierListe extends Liste {
-
-        public SortierListe() {
-            super();
-}
-
-        public void quicksort() {
-            SortierListe lLinkeListe = new SortierListe();
-            SortierListe lRechteListe = new SortierListe();
-            if (this.laenge() > 2) {
-                this.zumAnfang();
-                Integer pivot = (Integer) this.aktuellesElement();
-                this.entferneAktuell(); // Pivot raus
-                while (this.laenge() > 0) {
-                    this.zumAnfang();
-                    if ((Integer) this.aktuellesElement() <= pivot) {
-                        lLinkeListe.haengeAn(this.aktuellesElement());
-                        this.entferneAktuell();
-                    } else if ((Integer) this.aktuellesElement() <= pivot) {
-                        lRechteListe.haengeAn(this.aktuellesElement());
-                        this.entferneAktuell();
-                    }
-                }
-                if (lLinkeListe.laenge() > 0) {
-                    lLinkeListe.quicksort();
-                }
-                if (lRechteListe.laenge() > 0) {
-                    lRechteListe.quicksort();
-                }
-                while ( lLinkeListe.laenge() > 0)
-                {
-                    lLinkeListe.zumAnfang();
-                    this.haengeAn(lLinkeListe.aktuellesElement());
-                    lLinkeListe.entferneAktuell();
-                }
-                this.haengeAn(pivot);
-                while ( lRechteListe.laenge() > 0)
-                {
-                    lRechteListe.zumAnfang();
-                    this.haengeAn(lRechteListe.aktuellesElement());
-                    lRechteListe.entferneAktuell();
-                }
-            }
-        }
     }
 }
