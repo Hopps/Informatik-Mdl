@@ -4,6 +4,7 @@
  */
 package SortierAlgorithmen;
 
+import datenstrukturen.Liste;
 import java.util.Random;
 
 /**
@@ -16,7 +17,7 @@ public class SortierVergleich {
         SortierVergleich s = new SortierVergleich();
         s.testeSortierverfahren();
     }
-    private int zN = 9000;
+    private int zN = 9;
     private int[] zufallsZahlen;
     private Random hatRandom;
     private Stoppuhr hatUhr;
@@ -41,6 +42,33 @@ public class SortierVergleich {
             System.out.println("Kaputt!");
         }
         hatUhr.reset();
+        
+        
+        hatUhr = new Stoppuhr();
+        SortierListe lListe = new SortierListe();
+        for ( int i = 0; i <= zufallsZahlen.length-1; i++)
+        {
+            lListe.haengeAn(zufallsZahlen[i]);
+        }
+        System.out.println("Quicksort: ");
+        hatUhr.start();
+        lListe.quicksort();
+        hatUhr.stop();
+        int[] lZahlenQuicksort = new int[zufallsZahlen.length];
+        for( int i = 0; i < lListe.laenge(); i++ )
+        {
+            lListe.zumAnfang();
+            lZahlenQuicksort[i] = (Integer)lListe.aktuellesElement();
+            System.out.println((Integer)lListe.aktuellesElement());
+            lListe.entferneAktuell();
+        }
+        if (this.istSortiert(lZahlenQuicksort)) {
+            System.out.println("Funktioniert! Zeit: " + hatUhr.zeit() + "ms");
+        } else {
+            System.out.println("Kaputt!");
+        }
+        hatUhr.reset();
+        
     }
 
     public boolean istSortiert(int[] pZahlen) {
@@ -64,5 +92,52 @@ public class SortierVergleich {
             }
         }
         return pZahlen;
+    }
+
+
+    class SortierListe extends Liste {
+
+        public SortierListe() {
+            super();
+        }
+
+        public void quicksort() {
+            SortierListe lLinkeListe = new SortierListe();
+            SortierListe lRechteListe = new SortierListe();
+            if (this.laenge() > 2) {
+                this.zumAnfang();
+                Integer pivot = (Integer) this.aktuellesElement();
+                this.entferneAktuell(); // Pivot raus
+                while (this.laenge() > 0) {
+                    this.zumAnfang();
+                    if ((Integer) this.aktuellesElement() <= pivot) {
+                        lLinkeListe.haengeAn(this.aktuellesElement());
+                        this.entferneAktuell();
+                    } else if ((Integer) this.aktuellesElement() <= pivot) {
+                        lRechteListe.haengeAn(this.aktuellesElement());
+                        this.entferneAktuell();
+                    }
+                }
+                if (lLinkeListe.laenge() > 0) {
+                    lLinkeListe.quicksort();
+                }
+                if (lRechteListe.laenge() > 0) {
+                    lRechteListe.quicksort();
+                }
+                while ( lLinkeListe.laenge() > 0)
+                {
+                    lLinkeListe.zumAnfang();
+                    this.haengeAn(lLinkeListe.aktuellesElement());
+                    lLinkeListe.entferneAktuell();
+                }
+                this.haengeAn(pivot);
+                while ( lRechteListe.laenge() > 0)
+                {
+                    lRechteListe.zumAnfang();
+                    this.haengeAn(lRechteListe.aktuellesElement());
+                    lRechteListe.entferneAktuell();
+                }
+            }
+        }
     }
 }

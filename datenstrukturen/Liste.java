@@ -19,6 +19,8 @@ public class Liste<Datentyp> {
     {
         hatBug = new Knoten();
         hatHeck = new Knoten();
+        hatBug.setNachfolger(hatHeck);
+        hatHeck.setVorgaenger(hatBug);
         kenntAktuell = hatBug;
         zAnzahl = 0;
     }
@@ -80,6 +82,7 @@ public class Liste<Datentyp> {
         lKnoten.setVorgaenger(kenntAktuell.getVorgaenger());
         kenntAktuell.setVorgaenger(lKnoten);
         lKnoten.setNachfolger(kenntAktuell);
+        zAnzahl++;
     }
     
     public void fuegeDahinterEin(Datentyp pInhalt)
@@ -89,6 +92,7 @@ public class Liste<Datentyp> {
         lKnoten.setVorgaenger(kenntAktuell);
         lKnoten.setNachfolger(kenntAktuell.getNachfolger());
         kenntAktuell.setNachfolger(lKnoten);
+        zAnzahl++;
     }
     
     public void haengeAn(Datentyp pInhalt)
@@ -98,6 +102,7 @@ public class Liste<Datentyp> {
         lKnoten.setVorgaenger(hatHeck.getVorgaenger());
         lKnoten.setNachfolger(hatHeck);
         hatHeck.setVorgaenger(lKnoten);
+        zAnzahl++;
     }
     
     public void entferneAktuell()
@@ -106,6 +111,7 @@ public class Liste<Datentyp> {
         {
             kenntAktuell.getVorgaenger().setNachfolger(kenntAktuell.getNachfolger());
             kenntAktuell.getNachfolger().setVorgaenger(kenntAktuell.getVorgaenger());
+            zAnzahl--;
         }
     }
 }

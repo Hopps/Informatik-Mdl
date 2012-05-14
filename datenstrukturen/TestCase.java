@@ -23,7 +23,7 @@ public class TestCase {
         baum.linkerTeilbaum().rechterTeilbaum().setzeRechts(new BinBaum(2));
     }
 
-
+    
 
 
 }
