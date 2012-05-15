@@ -8,6 +8,7 @@ public class BinBaum<Datentyp> {
 
     private BinBaum<Datentyp> linkerTB = null;
     private BinBaum<Datentyp> rechterTB = null;
+    private BinBaum<Datentyp> zVater = null;
     private Datentyp zInhalt = null;
 
     public BinBaum()
@@ -65,4 +66,15 @@ public class BinBaum<Datentyp> {
     {
         return ( zInhalt == null );
     }
+    
+    public void setzeVater(BinBaum pVater)
+    {
+        zVater = pVater;
+    }
+    
+    public BinBaum vater()
+    {
+        return zVater;
+    }
+    
 }

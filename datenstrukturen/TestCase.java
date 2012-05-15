@@ -33,13 +33,17 @@ public class TestCase {
         sBaum.fuegeEin(10);
         sBaum.fuegeEin(16);
         sBaum.fuegeEin(2);
+        sBaum.fuegeEin(9);
 
-        System.out.println("Preorder");
-        preorder(sBaum);
+        //System.out.println("Preorder");
+        //preorder(sBaum);
         System.out.println("Inorder");
         inorder(sBaum);
-        System.out.println("Postorder");
-        postorder(sBaum);
+        
+        sBaum.loesche(10);
+        inorder(sBaum);
+        //System.out.println("Postorder");
+        //postorder(sBaum);
 
     }
 
