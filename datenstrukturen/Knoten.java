@@ -3,9 +3,9 @@ package datenstrukturen;
 /**
  * @author merlin
  */
-public class Knoten<Datentyp> {
+public class Knoten{
 
-    private Datentyp zInhalt;
+    private Object zInhalt;
     private Knoten kenntNachfolger = null;
     private Knoten kenntVorgaenger = null;
 
@@ -13,31 +13,31 @@ public class Knoten<Datentyp> {
 
     }
 
-    public Knoten(Datentyp pInhalt) {
+    public Knoten(Object pInhalt) {
         zInhalt = pInhalt;
     }
 
-    public void setVorgaenger(Knoten<Datentyp> pVorgaenger) {
+    public void setVorgaenger(Knoten pVorgaenger) {
         kenntVorgaenger = pVorgaenger;
     }
 
-    public Knoten<Datentyp> getVorgaenger() {
+    public Knoten getVorgaenger() {
         return kenntVorgaenger;
     }
 
-    public void setNachfolger(Knoten<Datentyp> pNachfolger) {
+    public void setNachfolger(Knoten pNachfolger) {
         kenntNachfolger = pNachfolger;
     }
 
-    public Knoten<Datentyp> getNachfolger() {
+    public Knoten getNachfolger() {
         return kenntNachfolger;
     }
 
-    public Datentyp inhalt() {
+    public Object inhalt() {
         return zInhalt;
     }
 
-    public void setInhalt(Datentyp pInhalt) {
+    public void setInhalt(Object pInhalt) {
         zInhalt = pInhalt;
     }
 }

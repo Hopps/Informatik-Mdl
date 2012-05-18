@@ -7,11 +7,11 @@ package datenstrukturen;
 /**
  * @author merlin
  */
-public class Liste<Datentyp> {
+public class Liste{
     
-    private Knoten<Datentyp> hatBug;          // Die beiden werden Sentinels genannt, enthalten
-    private Knoten<Datentyp> hatHeck;         // keine Daten und erleichtern Anfügen und Löschen.
-    private Knoten<Datentyp> kenntAktuell;    // Markierung für aktuellen Knoten
+    private Knoten hatBug;          // Die beiden werden Sentinels genannt, enthalten
+    private Knoten hatHeck;         // keine Daten und erleichtern Anfügen und Löschen.
+    private Knoten kenntAktuell;    // Markierung für aktuellen Knoten
     private int zAnzahl = 0;            // Anzahl der Knoten (ohne Sentinels)
     
     
@@ -65,7 +65,7 @@ public class Liste<Datentyp> {
         }
     }
     
-    public Datentyp aktuellesElement()
+    public Object aktuellesElement()
     {
         return kenntAktuell.inhalt();
     }
@@ -75,9 +75,9 @@ public class Liste<Datentyp> {
         return zAnzahl;
     }
     
-    public void fuegeDavorEin(Datentyp pInhalt)
+    public void fuegeDavorEin(Object pInhalt)
     {
-        Knoten<Datentyp> lKnoten = new Knoten(pInhalt);
+        Knoten lKnoten = new Knoten(pInhalt);
         kenntAktuell.getVorgaenger().setNachfolger(lKnoten);
         lKnoten.setVorgaenger(kenntAktuell.getVorgaenger());
         kenntAktuell.setVorgaenger(lKnoten);
@@ -85,9 +85,9 @@ public class Liste<Datentyp> {
         zAnzahl++;
     }
     
-    public void fuegeDahinterEin(Datentyp pInhalt)
+    public void fuegeDahinterEin(Object pInhalt)
     {
-        Knoten<Datentyp> lKnoten = new Knoten(pInhalt);
+        Knoten lKnoten = new Knoten(pInhalt);
         kenntAktuell.getNachfolger().setVorgaenger(lKnoten);
         lKnoten.setVorgaenger(kenntAktuell);
         lKnoten.setNachfolger(kenntAktuell.getNachfolger());
@@ -95,9 +95,9 @@ public class Liste<Datentyp> {
         zAnzahl++;
     }
     
-    public void haengeAn(Datentyp pInhalt)
+    public void haengeAn(Object pInhalt)
     {
-        Knoten<Datentyp> lKnoten = new Knoten(pInhalt);
+        Knoten lKnoten = new Knoten(pInhalt);
         hatHeck.getVorgaenger().setNachfolger(lKnoten);
         lKnoten.setVorgaenger(hatHeck.getVorgaenger());
         lKnoten.setNachfolger(hatHeck);

@@ -74,12 +74,12 @@ public class SortierVergleich {
         {
             lListe.zumAnfang();
             lZahlenQuicksort[i] = (Integer) lListe.aktuellesElement();
-            System.out.println((Integer) lListe.aktuellesElement());
+            //System.out.println((Integer) lListe.aktuellesElement());
             lListe.entferneAktuell();
         }
         for ( int i = 0; i < lZahlenQuicksort.length; i++ )
         {
-            // System.out.println(lZahlenQuicksort[i]);
+            System.out.println(lZahlenQuicksort[i]);
         }
         if (this.istSortiert(lZahlenQuicksort)) {
             System.out.println("Funktioniert! Zeit: " + hatUhr.zeit() + "ms");
